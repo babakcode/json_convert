@@ -1,0 +1,9 @@
+{
+  "name": "San Diego",
+  "population": 3500000,
+  "populationStr": "3.5mil",
+  "country": {
+    "_id": 23,
+    "name": "USA"
+  }
+}

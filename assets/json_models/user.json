@@ -1,0 +1,19 @@
+{
+  "name" : "Babak",
+  "nicName": "BabakCode",
+  "age": 23,
+  "location": {
+    "lat": 34.12,
+    "lng": 46.22341
+  },
+  "posts": [
+    {
+      "name": "validation in dart",
+      "description": "use is for data type detection"
+    },
+    {
+      "name": "show image in flutter",
+      "description": "use Image.asset to load images from asset folder"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name" : "Babak",
+  "nicName": "BabakCode",
+  "website": "http://babakcode.com",
+  "age": 23,
+  "location": {
+    "lat": 34.12,
+    "lng": 46.22341
+  },
+  "posts": [
+    {
+      "name": "Get datatype in dart",
+      "description": "Use `is` to identify the data type"
+    },
+    {
+      "name": "show image in flutter",
+      "description": "Use Image.asset to load images from asset folder"
+    }
+  ]
+}
