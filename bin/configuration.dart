@@ -1,4 +1,4 @@
-import 'package:json_convert/src/app/json_convert_options.dart';
+import 'package:json_convert/src/app/options/json_convert_options.dart';
 
 class Configuration {
   bool? completed;

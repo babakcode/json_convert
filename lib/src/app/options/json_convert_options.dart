@@ -1,6 +1,6 @@
-import 'package:json_convert/src/app/convert_classic_mode.dart';
-import 'package:json_convert/src/app/convert_freezed_mode.dart';
-import 'package:json_convert/src/app/convert_json_serializable_mode.dart';
+import 'classic.dart';
+import 'freezed.dart';
+import 'json_serializable.dart';
 
 abstract class JsonConvertOptions {
   Map<String, dynamic> toJsonSave();

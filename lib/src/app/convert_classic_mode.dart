@@ -1,23 +1,35 @@
+import 'package:json_convert/json_convert.dart';
 import 'package:json_convert/src/models/variables_declaration.dart';
 import 'package:recase/recase.dart';
 import 'json_convert_mode.dart';
-import 'json_convert_options.dart';
 import 'json_convert_utils.dart';
 
+/// [ConvertClassicMode] generates dart model files
+/// that not need to build_runner
 class ConvertClassicMode implements JsonConvertMode {
+
+  /// [json] is decoded json file
+  /// if decoded file type of variable is `List<dynamic>`
+  /// first element of list select as decoded file!
   @override
   Map<String, dynamic> json;
 
+  /// [className] is first json file name
   @override
   String className;
 
+  /// [files] is finalized exported codes in string type
   @override
   List<MapEntry<String, String>> files = [];
+
+  /// [options] is [ConvertClassicMode] methods checkboxes variables
   ConvertClassicOptions options;
 
+  /// constructor
   ConvertClassicMode(this.json,
       {required this.className, required this.options});
 
+  /// [convert] is a main method of [ConvertClassicMode] class
   void convert() {
     /// clear .dart files list
     files.clear();
@@ -36,6 +48,7 @@ class ConvertClassicMode implements JsonConvertMode {
           allFilesImports.firstWhere((element) => element.key == entry.key);
       final fileName = entry.key;
 
+      /// export dart codes
       files.add(MapEntry(entry.key,
           '''${options.equatableMixin ? "import 'package:equatable/equatable.dart';" : ""}
 ${imports.value.map((e) => "import '$e.dart';").join("\n")}
@@ -214,47 +227,4 @@ ${options.fromJson ? '''
 
     return list;
   }
-}
-
-class ConvertClassicOptions extends JsonConvertOptions {
-  final bool fromJson;
-  final bool jsonToList;
-  final bool toJson;
-  final bool copyWith;
-  final bool nullable;
-  final bool equatableMixin;
-
-  ConvertClassicOptions({
-    this.fromJson = true,
-    this.jsonToList = true,
-    this.toJson = true,
-    this.copyWith = true,
-    this.nullable = true,
-    this.equatableMixin = false,
-  });
-
-  @override
-  String get type => "classic";
-
-  factory ConvertClassicOptions.fromJsonSave(Map<String, dynamic> json) {
-    return ConvertClassicOptions(
-      equatableMixin: json['equatableMixin'],
-      copyWith: json['copyWith'],
-      fromJson: json['fromJson'],
-      jsonToList: json['jsonToList'],
-      nullable: json['nullable'],
-      toJson: json['toJson'],
-    );
-  }
-
-  @override
-  Map<String, dynamic> toJsonSave() => {
-        "equatableMixin": equatableMixin,
-        "copyWith": copyWith,
-        "fromJson": fromJson,
-        "jsonToList": jsonToList,
-        "nullable": nullable,
-        "toJson": toJson,
-        "type": type,
-      };
 }

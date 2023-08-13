@@ -1,7 +1,7 @@
 {
   "name" : "Babak",
-  "nicName": "BabakCode",
-  "website": "http://babakcode.com",
+  "nickname": "BabakCode",
+  "websiteAddress": "http://babakcode.com",
   "age": 23,
   "location": {
     "lat": 34.12,

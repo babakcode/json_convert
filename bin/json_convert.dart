@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:json_convert/src/app/convert_classic_mode.dart';
-import 'package:json_convert/src/app/convert_freezed_mode.dart';
-import 'package:json_convert/src/app/convert_json_serializable_mode.dart';
-import 'package:json_convert/src/app/json_convert_options.dart';
+import 'package:json_convert/json_convert.dart';
 import 'package:path/path.dart';
 import 'package:process_run/process_run.dart';
 import 'package:recase/recase.dart';

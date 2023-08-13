@@ -6,9 +6,11 @@ Generate codes for freezed, json_serializable, classic models easily
 ## Features
 
 To convert json files to dart files, Use:
+
 **`dart run json_convert`**
 
 To build *`file.g.dart`* or *`file.freezed.dart`* with [*build_runner*](https://pub.dev/packages/build_runner), use following command:
+
 **`dart run json_convert build`**
 
 To clear generated configuration file of json_convert with your needs, run following command:
@@ -17,10 +19,10 @@ To clear generated configuration file of json_convert with your needs, run follo
 
 ## Getting started
 
-Add some json file inside `assets/`  folder
+Add some json file inside `assets/` folder
 
 <img src="https://assets.babakcode.com/flutter/packages/json_convert/json_convert03_edited.jpg" width="300"
-alt="babakcode.com">
+alt="https://babakcode.com">
 
 assets/json_convert/`user.json`
 
@@ -62,11 +64,12 @@ and for assets/json_convert/`city.json`
 ```
 
 
-or you can add them in your desired location with the `Additional information` configuration 👇
+or you can add them at your desired location with the `Additional information` configuration 👇
 
 ## Usage
 
 Run following command to generate dart files:
+
 `dart run json_convert`
 
 ![dart run json_convert](https://assets.babakcode.com/flutter/packages/json_convert/export.gif)

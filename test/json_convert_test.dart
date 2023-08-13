@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:json_convert/src/app/convert_freezed_mode.dart';
+import 'package:json_convert/json_convert.dart';
 import 'package:json_convert/src/constants/constants.dart';
 
 void main() {
