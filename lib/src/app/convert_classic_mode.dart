@@ -15,10 +15,8 @@ class ConvertClassicMode implements JsonConvertMode {
   List<MapEntry<String, String>> files = [];
   ConvertClassicOptions options;
 
-  ConvertClassicMode(
-    this.json, {
-    required this.className, required this.options
-  });
+  ConvertClassicMode(this.json,
+      {required this.className, required this.options});
 
   void convert() {
     /// clear .dart files list
@@ -218,7 +216,7 @@ ${options.fromJson ? '''
   }
 }
 
-class ConvertClassicOptions extends JsonConvertOptions{
+class ConvertClassicOptions extends JsonConvertOptions {
   final bool fromJson;
   final bool jsonToList;
   final bool toJson;
@@ -251,12 +249,12 @@ class ConvertClassicOptions extends JsonConvertOptions{
 
   @override
   Map<String, dynamic> toJsonSave() => {
-    "equatableMixin": equatableMixin,
-    "copyWith": copyWith,
-    "fromJson": fromJson,
-    "jsonToList": jsonToList,
-    "nullable": nullable,
-    "toJson": toJson,
-    "type" : type,
-  };
+        "equatableMixin": equatableMixin,
+        "copyWith": copyWith,
+        "fromJson": fromJson,
+        "jsonToList": jsonToList,
+        "nullable": nullable,
+        "toJson": toJson,
+        "type": type,
+      };
 }

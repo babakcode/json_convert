@@ -30,6 +30,6 @@ class Configuration {
         "jsonFilesLocation": jsonFilesLocation,
         "exportLocation": exportLocation,
         "exportType": exportType,
-    "options": options?.toJsonSave(),
+        "options": options?.toJsonSave(),
       };
 }

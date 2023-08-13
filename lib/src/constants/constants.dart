@@ -1,4 +1,4 @@
-class Constants{
+class Constants {
   static String json = '''
   [
     {
@@ -87,10 +87,7 @@ class Constants{
         "suite": "Apt. 556",
         "city": "Gwenborough",
         "zipcode": "92998-3874",
-        "geo": {
-          "lat": -37.3159,
-          "lng": 81.1496
-        }
+        "geo": {"lat": -37.3159, "lng": 81.1496}
       }
     ],
     "/phone": "1-770-736-8031 x56442",
@@ -113,10 +110,7 @@ class Constants{
         "suite": "Apt. 556",
         "city": "Gwenborough",
         "zipcode": "92998-3874",
-        "geo": {
-          "lat": -37.3159,
-          "lng": 81.1496
-        }
+        "geo": {"lat": -37.3159, "lng": 81.1496}
       }
     ],
     "/phone": "1-770-736-8031 x56442",

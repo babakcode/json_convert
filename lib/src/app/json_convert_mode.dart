@@ -1,4 +1,4 @@
-abstract class JsonConvertMode{
+abstract class JsonConvertMode {
   late Map<String, dynamic> json;
   late String className;
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:json_convert/src/app/conver_classic_mode.dart';
+import 'package:json_convert/src/app/convert_classic_mode.dart';
 import 'package:json_convert/src/app/convert_freezed_mode.dart';
 import 'package:json_convert/src/app/convert_json_serializable_mode.dart';
 import 'package:json_convert/src/app/json_convert_options.dart';
@@ -177,11 +177,11 @@ void _build() async {
     return;
   }
   final analysisOptionsFile = File("./analysis_options.yaml");
-  if(analysisOptionsFile.existsSync()){
+  if (analysisOptionsFile.existsSync()) {
     String data = analysisOptionsFile.readAsStringSync();
-    if(!data.contains('''analyzer:
+    if (!data.contains('''analyzer:
   errors:
-    invalid_annotation_target: ignore''')){
+    invalid_annotation_target: ignore''')) {
       data += '''analyzer:
   errors:
     invalid_annotation_target: ignore''';
@@ -210,7 +210,7 @@ Future<bool?> addDependencyIfNotExist(String dependency,
       await shell.run("dart pub add ${asDev ? "--dev " : ""}$dependency");
       return addDependencyIfNotExist(dependency);
     }
-  }else{
+  } else {
     return true;
   }
   return null;

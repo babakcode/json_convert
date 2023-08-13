@@ -139,15 +139,15 @@ class JsonConvertUtils {
     return recursiveVariables;
   }
 
-
-  static String generateVariableDeDuplicatedName(String key, List<String> names, {int times = 0}) {
+  static String generateVariableDeDuplicatedName(String key, List<String> names,
+      {int times = 0}) {
     key = key.camelCase;
-    if(names.contains(key)){
+    if (names.contains(key)) {
       times++;
       String newKey = "$key$times";
-      if(names.contains(newKey)){
+      if (names.contains(newKey)) {
         key = generateVariableDeDuplicatedName(key, names, times: times);
-      }else{
+      } else {
         key = newKey;
       }
     }

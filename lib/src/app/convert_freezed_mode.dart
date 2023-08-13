@@ -1,8 +1,8 @@
-import 'package:json_convert/json_convert.dart';
 import 'package:json_convert/src/models/variables_declaration.dart';
 import 'package:recase/recase.dart';
 import 'json_convert_mode.dart';
 import 'json_convert_options.dart';
+import 'json_convert_utils.dart';
 
 class ConvertFreezedMode implements JsonConvertMode {
   @override
@@ -111,7 +111,7 @@ class ConvertFreezedOptions extends JsonConvertOptions {
       "foundation": foundation,
       "jsonToList": jsonToList,
       "mutable": mutable,
-      "type" : type,
+      "type": type,
     };
   }
 

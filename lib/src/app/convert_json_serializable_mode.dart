@@ -1,10 +1,10 @@
-import 'package:json_convert/json_convert.dart';
 import 'package:json_convert/src/app/json_convert_options.dart';
 import 'package:json_convert/src/models/variables_declaration.dart';
 import 'package:recase/recase.dart';
 import 'json_convert_mode.dart';
+import 'json_convert_utils.dart';
 
-class ConvertJsonSerializableMode implements JsonConvertMode{
+class ConvertJsonSerializableMode implements JsonConvertMode {
   @override
   String className;
 
@@ -17,30 +17,31 @@ class ConvertJsonSerializableMode implements JsonConvertMode{
   ConvertJsonSerializableOptions options;
 
   ConvertJsonSerializableMode(
-      this.json, {
-        required this.className,
-        required this.options,
-      });
+    this.json, {
+    required this.className,
+    required this.options,
+  });
 
   void convert() {
     /// clear .dart files list
     files.clear();
 
     /// files variables
-    final allFilesVariables = JsonConvertUtils.variablesDeclare(json, name: className);
+    final allFilesVariables =
+        JsonConvertUtils.variablesDeclare(json, name: className);
 
     final allFilesImports =
-    JsonConvertUtils.importClasses(json, className: className);
+        JsonConvertUtils.importClasses(json, className: className);
 
     for (final entry in allFilesVariables) {
       /// get variables
       final variables = entry.value;
       final imports =
-      allFilesImports.firstWhere((element) => element.key == entry.key);
+          allFilesImports.firstWhere((element) => element.key == entry.key);
       final fileName = entry.key;
 
-      files.add(MapEntry(entry.key,
-          '''import 'package:json_annotation/json_annotation.dart';
+      files.add(MapEntry(
+          entry.key, '''import 'package:json_annotation/json_annotation.dart';
 ${options.equatableMixin ? "import 'package:equatable/equatable.dart';" : ""}
 ${imports.value.map((e) => "import '../$e/$e.dart';").join("\n")}
 ${"part '${fileName.snakeCase}.g.dart';"}
@@ -107,7 +108,8 @@ ${fileName.pascalCase} copyWith({
       final type = variables.types.elementAt(index);
       final entry = variables.defaultValues.elementAt(index);
       //
-      list.add("${options.jsonKey? "@JsonKey(name: '${entry.key}') " : ""}$type? $name");
+      list.add(
+          "${options.jsonKey ? "@JsonKey(name: '${entry.key}') " : ""}$type? $name");
     }
     return list;
   }
@@ -153,28 +155,26 @@ ${fileName.pascalCase} copyWith({
 
     return list;
   }
-
 }
 
-class ConvertJsonSerializableOptions extends JsonConvertOptions{
-
+class ConvertJsonSerializableOptions extends JsonConvertOptions {
   final bool copyWith;
   final bool jsonKey;
   final bool jsonToList;
   final bool equatableMixin;
 
   ConvertJsonSerializableOptions({
-
     this.jsonKey = false,
     this.copyWith = true,
     this.jsonToList = true,
     this.equatableMixin = false,
-});
+  });
 
   @override
   String get type => "json_serializable";
 
-  factory ConvertJsonSerializableOptions.fromJsonSave(Map<String, dynamic> json) {
+  factory ConvertJsonSerializableOptions.fromJsonSave(
+      Map<String, dynamic> json) {
     return ConvertJsonSerializableOptions(
       jsonKey: json['jsonKey'],
       copyWith: json['copyWith'],
@@ -190,7 +190,7 @@ class ConvertJsonSerializableOptions extends JsonConvertOptions{
       "copyWith": copyWith,
       "jsonToList": jsonToList,
       "equatableMixin": equatableMixin,
-      "type" : type,
+      "type": type,
     };
   }
 }
