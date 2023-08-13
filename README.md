@@ -5,9 +5,15 @@ Generate codes for freezed, json_serializable, classic models easily
 
 ## Features
 
-> dart run json_convert
-> dart run json_convert build
-> dart run json_convert clear
+To convert json files to dart files, Use:
+**`dart run json_convert`**
+
+To build *`file.g.dart`* or *`file.freezed.dart`* with [*build_runner*](https://pub.dev/packages/build_runner), use following command:
+**`dart run json_convert build`**
+
+To clear generated configuration file of json_convert with your needs, run following command:
+
+**`dart run json_convert clear`**
 
 ## Getting started
 
@@ -56,20 +62,52 @@ and for assets/json_convert/`city.json`
 ```
 
 
-or you can add them in your desired location with this configuration 👇
+or you can add them in your desired location with the `Additional information` configuration 👇
 
 ## Usage
 
-=== "Tab 1"  
-Markdown **content**.
+Run following command to generate dart files:
+`dart run json_convert`
 
-Multiple paragraphs.  
-=== "Tab 2"  
-More Markdown **content**.
+![dart run json_convert](https://assets.babakcode.com/flutter/packages/json_convert/export.gif)
 
-- list item a - list item b
+And now you can see exported dart files in `lib/models` folder:
+![json_convert exported dart files](https://assets.babakcode.com/flutter/packages/json_convert/json_convert04.png)
+
 ## Additional information
+Json_convert will ask you some questions.
 
-TODO: Tell users more about the package: where to find more information, how to  
-contribute to the package, how to file issues, what response they can expect  
-from the package authors, and more.
+1. Select json files directory.
+
+```cmd
+  Default json files directory is: `assets/json_models`
+  Would you like to change directory?
+  [Press Enter / Write new dir location]:
+```
+You can press Enter to continue or write new directory location, As an example: `types` folder in root directory.
+
+2. Select export type.
+```cmd
+Please select export type:
+1. classic
+2. json_serializable
+3. freezed
+Write [1-3] or [classic, json_serializable, freezed]:
+```
+You can enter export type id or name.
+
+> The classic type does not require to **dart run json_convert build** but it does for **freezed** and **json_serializable**!
+
+3. Complete selected type methods checkmarks:
+   `some questions for adding methods`
+
+4. Choose export directory:
+   Default export directory is `lib/models`.
+```cmd
+Export location inside lib folder: `models`
+Do you want to change it?
+[Press Enter / Write new location]:
+```
+You can press Enter to continue or write new directory location, As an example: `entities` folder inside `lib` directory.
+
+> Do not include the ~~`lib`~~ at the beginning of the address!
