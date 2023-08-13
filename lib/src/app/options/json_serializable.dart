@@ -1,6 +1,7 @@
-
 import 'package:json_convert/src/app/options/json_convert_options.dart';
 
+/// [ConvertJsonSerializableOptions] is a class for methods of this generation
+/// checkmarks
 class ConvertJsonSerializableOptions extends JsonConvertOptions {
   final bool copyWith;
   final bool jsonKey;

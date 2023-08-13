@@ -1,6 +1,6 @@
-
 import 'package:json_convert/src/app/options/json_convert_options.dart';
 
+/// [ConvertFreezedOptions] is a class for methods of this generation checkmarks
 class ConvertFreezedOptions extends JsonConvertOptions {
   final bool foundation;
   final bool mutable;

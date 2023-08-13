@@ -7,7 +7,6 @@ import 'json_convert_utils.dart';
 /// [ConvertClassicMode] generates dart model files
 /// that not need to build_runner
 class ConvertClassicMode implements JsonConvertMode {
-
   /// [json] is decoded json file
   /// if decoded file type of variable is `List<dynamic>`
   /// first element of list select as decoded file!

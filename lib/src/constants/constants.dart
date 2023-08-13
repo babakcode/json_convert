@@ -1,3 +1,5 @@
+/// [Constants] is a class that contains some encoded string to decoded
+/// and some map variable to test.
 class Constants {
   static String json = '''
   [

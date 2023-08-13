@@ -1,6 +1,6 @@
-
 import 'json_convert_options.dart';
 
+/// [ConvertClassicOptions] is a class for methods of this generation checkmarks
 class ConvertClassicOptions extends JsonConvertOptions {
   final bool fromJson;
   final bool jsonToList;
@@ -34,12 +34,12 @@ class ConvertClassicOptions extends JsonConvertOptions {
 
   @override
   Map<String, dynamic> toJsonSave() => {
-    "equatableMixin": equatableMixin,
-    "copyWith": copyWith,
-    "fromJson": fromJson,
-    "jsonToList": jsonToList,
-    "nullable": nullable,
-    "toJson": toJson,
-    "type": type,
-  };
+        "equatableMixin": equatableMixin,
+        "copyWith": copyWith,
+        "fromJson": fromJson,
+        "jsonToList": jsonToList,
+        "nullable": nullable,
+        "toJson": toJson,
+        "type": type,
+      };
 }

@@ -1,7 +1,15 @@
 import 'package:json_convert/src/models/variables_declaration.dart';
 import 'package:recase/recase.dart';
 
+/// ths class generated to help generation of dart files
 class JsonConvertUtils {
+  /// [checkBetterToAddJsonKey] is used and true when json key includes unusual
+  /// name.
+  /// As an example [_id] is an unusual name and not camelcase
+  /// In this case, the value of the [checkBetterToAddJsonKey] method is true
+  ///
+  /// This function runs recursive when reaches to map<String, dynamic>
+  /// type data to detection all of the variables names as json key
   static bool checkBetterToAddJsonKey(Map<String, dynamic> jsonData) {
     for (final key in jsonData.keys) {
       if (key.contains("_")) {
@@ -26,6 +34,9 @@ class JsonConvertUtils {
     return false;
   }
 
+  /// [importClasses] function to generate imports of dart files
+  /// This function runs recursive to get all of the json files
+  /// and generate imports for themself of dart files and split that
   /// export example
   /// import 'address.dart';
   /// import 'company.dart';
@@ -78,6 +89,7 @@ class JsonConvertUtils {
     return recursiveImports;
   }
 
+  /// [variablesDeclare] runs recursive to get all variables of each files
   static List<MapEntry<String, VariablesDeclaration>> variablesDeclare(
       Map<String, dynamic> json,
       {required String name,
@@ -139,6 +151,8 @@ class JsonConvertUtils {
     return recursiveVariables;
   }
 
+  /// [generateVariableDeDuplicatedName] runs when variable names are same and
+  /// splits these with addition increment number at the end of the variable name
   static String generateVariableDeDuplicatedName(String key, List<String> names,
       {int times = 0}) {
     key = key.camelCase;

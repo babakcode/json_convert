@@ -1,28 +1,38 @@
 import 'package:json_convert/src/models/variables_declaration.dart';
 import 'package:recase/recase.dart';
 import 'json_convert_mode.dart';
-import 'options/json_convert_options.dart';
 import 'json_convert_utils.dart';
 import 'options/freezed.dart';
 
+/// [ConvertFreezedMode] generates dart model files
+/// that need to build_runner
+/// to generate (filename.g.dart and filename.freezed.dart) files
 class ConvertFreezedMode implements JsonConvertMode {
+  /// [className] is first json file name
   @override
   String className;
 
+  /// [files] is finalized exported codes in string type
   @override
   List<MapEntry<String, String>> files = [];
 
+  /// [json] is decoded json file
+  /// if decoded file type of variable is `List<dynamic>`
+  /// first element of list select as decoded file!
   @override
   Map<String, dynamic> json;
 
+  /// [options] is [ConvertFreezedMode] methods checkboxes variables
   ConvertFreezedOptions options;
 
+  /// constructor
   ConvertFreezedMode(
     this.json, {
     required this.className,
     required this.options,
   });
 
+  /// [convert] is a main method of [ConvertFreezedMode] class
   void convert() {
     /// clear .dart files list
     files.clear();

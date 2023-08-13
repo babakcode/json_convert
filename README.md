@@ -27,39 +27,39 @@ alt="https://babakcode.com">
 assets/json_convert/`user.json`
 
 ```json
-{  
-  "name" : "Babak",  
-  "nicName": "BabakCode",  
-  "website": "http://babakcode.com",  
-  "age": 23,  
-  "location": {  
-    "lat": 34.12,  
-    "lng": 46.22341  
-  },  
-  "posts": [  
-    {  
-      "name": "Get datatype in dart",  
-      "description": "Use `is` to identify the data type"  
-    },  
-    {  
-      "name": "show image in flutter",  
-      "description": "Use Image.asset to load images from asset folder"  
-    }  
-  ]  
+{
+   "name" : "Babak",
+   "nickname": "BabakCode",
+   "websiteAddress": "http://babakcode.com",
+   "age": 23,
+   "location": {
+      "lat": 34.12,
+      "lng": 46.22341
+   },
+   "posts": [
+      {
+         "name": "Get datatype in dart",
+         "description": "Use `is` to identify the data type"
+      },
+      {
+         "name": "show image in flutter",
+         "description": "Use Image.asset to load images from asset folder"
+      }
+   ]
 }
 ```
 
 and for assets/json_convert/`city.json`
 
 ```json
-{  
-  "name": "San Diego",  
-  "population": 3500000,  
-  "populationStr": "3.5mil",  
-  "country": {  
-    "_id": 23,  
-    "name": "USA"  
-  }  
+{
+   "name": "San Diego",
+   "population": 3500000,
+   "populationStr": "3.5mil",
+   "country": {
+      "_id": 23,
+      "name": "USA"
+   }
 }
 ```
 

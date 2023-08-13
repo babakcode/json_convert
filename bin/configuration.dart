@@ -1,5 +1,7 @@
 import 'package:json_convert/src/app/options/json_convert_options.dart';
 
+/// [Configuration] is a class that save first configuration of json_convert
+/// inside [.dart_tool] folder
 class Configuration {
   bool? completed;
   String? jsonFilesLocation;
