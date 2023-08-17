@@ -2,13 +2,12 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:json_convert/json_convert.dart';
+import 'package:json_convert/src/app/json_convert_utils.dart';
 import 'package:path/path.dart';
 import 'package:process_run/process_run.dart';
 import 'package:recase/recase.dart';
 
 import 'configuration.dart';
-
-const lineNumber = 'line-number';
 
 final shell = Shell();
 
@@ -33,7 +32,7 @@ void main(List<String> arguments) async {
   if (arguments.contains("clear")) {
     configuration.completed = false;
     _saveConfiguration(configFile, configuration);
-    stdout.writeln("The json_convert default config cleared successfully!");
+    stdout.writeln("${JsonConvertUtils.green}The json_convert default config cleared successfully!${JsonConvertUtils.reset}");
     return;
   } else if (arguments.contains("build")) {
     _build();
@@ -41,7 +40,8 @@ void main(List<String> arguments) async {
   }
 
   if (!configuration.completed!) {
-    stdout.write("Default json files directory is: `assets/json_models`\n"
+    stdout.writeln();
+    stdout.write("Default json files directory is: `${JsonConvertUtils.blue}assets/json_models${JsonConvertUtils.reset}`\n"
         "Would you like to change directory?\n[Press Enter / Write new dir location]: ");
     var data = stdin.readLineSync();
     if (data == "") {
@@ -59,7 +59,8 @@ void main(List<String> arguments) async {
   Directory dir = Directory(configuration.jsonFilesLocation!);
 
   if (!dir.existsSync()) {
-    stderr.writeln("${configuration.jsonFilesLocation} dose not exist!");
+    stderr.writeln();
+    stderr.writeln("${JsonConvertUtils.red}${configuration.jsonFilesLocation} dose not exist!${JsonConvertUtils.reset}");
     return;
   }
 
@@ -70,15 +71,16 @@ void main(List<String> arguments) async {
   stdout.writeln();
 
   if (entities.isEmpty) {
-    stderr.writeln("No `.json` file found in ${dir.path} path location");
+    stderr.writeln();
+    stderr.writeln("${JsonConvertUtils.red}No `.json` file found in ${dir.path} path location${JsonConvertUtils.reset}");
     return;
   }
 
   if (!configuration.completed!) {
     stdout.writeln("Please select export type:");
-    stdout.writeln("1. classic");
-    stdout.writeln("2. json_serializable");
-    stdout.writeln("3. freezed");
+    stdout.writeln("${JsonConvertUtils.cyan}1. classic${JsonConvertUtils.reset}");
+    stdout.writeln("${JsonConvertUtils.cyan}2. json_serializable${JsonConvertUtils.reset}");
+    stdout.writeln("${JsonConvertUtils.cyan}3. freezed${JsonConvertUtils.reset}");
     configuration.exportType = _detectExportType();
     stdout.writeln();
   }
@@ -89,9 +91,10 @@ void main(List<String> arguments) async {
   }
 
   if (!configuration.completed!) {
-    stdout.writeln("Export location inside lib folder: `models`");
+    stdout.writeln("Export location inside lib folder: default directory is "
+        "${JsonConvertUtils.blue}`models`${JsonConvertUtils.reset}");
     stdout.writeln("Do you want to change it?");
-    stdout.write("[Press Enter / Write new location]: ");
+    stdout.write("[Press Enter / Write new directory location]: ");
     var data = stdin.readLineSync();
     if (data == "") {
       data = null;
@@ -132,26 +135,30 @@ void main(List<String> arguments) async {
         );
       }
     } catch (e) {
-      stderr.writeln(e);
+      stderr.writeln("${JsonConvertUtils.red}$e${JsonConvertUtils.reset}");
       continue;
     }
   }
   try {
+    stdout.writeln();
     await shell.run("dart format ${configuration.exportLocation}");
   } catch (e) {
     log("error", error: e);
   }
 
-  configuration.completed = true;
-  _saveConfiguration(configFile, configuration);
-  // return;
-  //
-  // final parser = ArgParser()..addFlag(lineNumber, negatable: false, abbr: 'n');
-  //
-  // ArgResults argResults = parser.parse(arguments);
-  // final paths = argResults.rest;
-  //
-  // dcat(paths, showLineNumbers: argResults[lineNumber] as bool);
+  if(!configuration.completed!){
+
+    stdout.writeln();
+    stdout.writeln("Do you want to save your configuration of "
+        "${JsonConvertUtils.bold}json_convert${JsonConvertUtils.reset}?\n"
+        "By default, it is not saved! [ n / y ]");
+    final save = stdin.readLineSync();
+    if(save == "y"){
+      configuration.completed = true;
+
+      _saveConfiguration(configFile, configuration);
+    }
+  }
 }
 
 void _build() async {
@@ -202,9 +209,12 @@ Future<bool?> addDependencyIfNotExist(String dependency,
   }
   final readPubspec = pubspec.readAsStringSync();
 
-  if (!readPubspec.contains(" $dependency")) {
+  if (!readPubspec.contains(" $dependency: ")) {
+    stdout.writeln();
     String ans = stdInRequired(
-        "You don't have $dependency in dependencies!\nDo you want to add this dependency? [y/n]:",
+        "You don't have ${JsonConvertUtils.blue}$dependency"
+            "${JsonConvertUtils.reset} in dependencies!\n"
+            "Do you want to add this dependency? [y/n]: ",
         lowercase: true,
         includes: ["y", "n"]);
     if (ans == 'y') {
@@ -312,7 +322,7 @@ void _exportCodesToLocation(Map<String, dynamic> jsonData,
 }
 
 JsonConvertOptions _exportTypeOptions(String exportType) {
-  stdout.writeln("Please complete $exportType mode methods checks:");
+  stdout.writeln("Please complete the $exportType model methods checkbox:");
   switch (exportType) {
     case "classic":
       return ConvertClassicOptions(
@@ -344,7 +354,7 @@ JsonConvertOptions _exportTypeOptions(String exportType) {
 
 bool _getOption(String key, {required bool def}) {
   stdout.write(
-      "$key (default: $def) [Enter or $def/ ${def ? "false" : "true"}]: ");
+      "$key ${JsonConvertUtils.lightYellow}(default: $def)${JsonConvertUtils.reset} [Enter or $def/ ${def ? "false" : "true"}]: ");
   String option = stdin.readLineSync() ?? "$def";
   if (option == "") {
     option = "$def";
