@@ -173,6 +173,10 @@ void _build() async {
   if (freezed == null) {
     return;
   }
+  final freezedAnnotation = await addDependencyIfNotExist("freezed_annotation");
+  if (freezedAnnotation == null) {
+    return;
+  }
   final analysisOptionsFile = File("./analysis_options.yaml");
   if (analysisOptionsFile.existsSync()) {
     String data = analysisOptionsFile.readAsStringSync();
